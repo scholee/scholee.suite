@@ -1,0 +1,83 @@
+{
+  "id": "scholee.suite",
+  "author": {
+    "name": "Joel Kuhn",
+    "discordUsername": "joelkuhn",
+    "email": "joel@example.com"
+  },
+  "actions": [
+    {
+      "id": "create.playlist",
+      "name": "Create Playlist",
+      "description": "Creates a playlist in Plugin Folder with selected tracks.",
+      "config": {
+        "permissions": {
+          "track": {
+            "read": [
+              "selected"
+            ]
+          },
+          "playlist": {
+            "read": [
+              "all"
+            ],
+            "modify": [
+              "all"
+            ],
+            "modifyFields": [
+              "tracks",
+              "name"
+            ],
+            "create": true
+          }
+        },
+        "allowParallel": false
+      }
+    },
+    {
+      "id": "compare.fields",
+      "name": "Compare Fields",
+      "description": "Compare two fields and create a playlist with the results under Plugin Folder.",
+      "config": {
+        "permissions": {
+          "track": {
+            "read": [
+              "all",
+              "selected"
+            ]
+          },
+          "network": {
+            "PATCH": [
+              "localhost",
+              "127.0.0.1"
+            ]
+          },
+          "playlist": {
+            "read": [
+              "all"
+            ],
+            "modify": [
+              "all"
+            ],
+            "modifyFields": [
+              "tracks",
+              "name"
+            ],
+            "create": true
+          }
+        },
+        "settings": {
+          "fieldA": "artist",
+          "fieldB": "extra1",
+          "mode": "Not matching",
+          "scope": "All tracks",
+          "trim": "true",
+          "emptyPolicy": "countAsMatch",
+          "confirmRun": "Yes",
+          "previewSelection": []
+        },
+        "allowParallel": false
+      }
+    }
+  ]
+}
