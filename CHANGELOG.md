@@ -363,9 +363,9 @@ _helpers.Report("Started");
 
 ## Support & Feedback
 
-**Author:** Joel Kuhn  
+**Author:** Joël Kuhn  
 **Discord:** joelkuhn  
-**Email:** joel@example.com
+**Email:** joelkuhn@hotmail.com
 
 For questions, bugs, or feature requests, please contact via Discord.
 

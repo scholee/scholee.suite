@@ -4,7 +4,7 @@
  * This plugin compares two track fields and creates a playlist with the results.
  * It is designed to be stable and follows the patterns from official Lexicon example plugins.
  *
- * @author Joel Kuhn
+ * @author Joël Kuhn
  * @version 3.0.5
  */
 

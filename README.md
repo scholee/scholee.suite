@@ -3,7 +3,7 @@
 A powerful plugin to compare track fields and automatically create playlists with the results.
 
 **Version:** 3.0.5  
-**Author:** Joel Kuhn  
+**Author:** Joël Kuhn  
 **Status:** ✅ Stable & Production-Ready
 
 ---
@@ -151,9 +151,9 @@ See [CHANGELOG.md](CHANGELOG.md) for details on all versions.
 
 ## 📞 Support
 
-**Author:** Joel Kuhn  
+**Author:** Joël Kuhn  
 **Discord:** joelkuhn  
-**Email:** joel@example.com
+**Email:** joelkuhn@hotmail.com
 
 For questions or issues, please contact via Discord.
 
