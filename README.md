@@ -1,5 +1,9 @@
 # Compare Fields - Lexicon DJ Plugin
 
+[![Version](https://img.shields.io/badge/version-3.0.8-blue.svg)](https://github.com/scholee/scholee.suite/releases)
+[![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+[![Lexicon DJ](https://img.shields.io/badge/Lexicon%20DJ-Plugin-orange.svg)](https://www.lexicondj.com)
+
 A powerful plugin to compare track fields and automatically create playlists with the results.
 
 **Version:** 3.0.8  
@@ -188,7 +192,36 @@ See [CHANGELOG.md](CHANGELOG.md) for details on all versions.
 **Discord:** joelkuhn  
 **Email:** joelkuhn@hotmail.com
 
-For questions or issues, please contact via Discord.
+For questions or issues:
+- 💬 **Discord:** joelkuhn (preferred)
+- 🐛 **GitHub Issues:** [Report a bug](https://github.com/scholee/scholee.suite/issues)
+- 📧 **Email:** joelkuhn@hotmail.com
+
+---
+
+## 🚀 Installation
+
+1. Download the latest release from [Releases](https://github.com/scholee/scholee.suite/releases)
+2. Extract to your Lexicon Plugins folder:
+   - **macOS:** `~/Documents/Lexicon/Plugins/`
+   - **Windows:** `%USERPROFILE%\Documents\Lexicon\Plugins\`
+3. Restart Lexicon or reload plugins
+4. Find plugin under **Plugins → Compare Fields**
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome! Feel free to:
+- 🐛 Report bugs via [Issues](https://github.com/scholee/scholee.suite/issues)
+- 💡 Suggest features
+- 🔀 Submit Pull Requests
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ---
 
