@@ -2,7 +2,7 @@
 
 A powerful plugin to compare track fields and automatically create playlists with the results.
 
-**Version:** 3.0.5  
+**Version:** 3.0.6  
 **Author:** Joël Kuhn  
 **Status:** ✅ Stable & Production-Ready
 
@@ -20,14 +20,38 @@ A powerful plugin to compare track fields and automatically create playlists wit
 - ✅ **Progress Tracking**: Real-time updates for large libraries
 
 ### Comparable Fields
-```
-id, title, artist, albumTitle, label, remixer, mix,
-composer, producer, grouping, lyricist, comment, key,
-genre, bpm, rating, color, year, duration, bitrate,
-playCount, location, lastPlayed, dateAdded, dateModified,
-sizeBytes, sampleRate, trackNumber, energy, danceability,
-popularity, happiness, extra1, extra2, extra3
-```
+
+**Basic Metadata:**
+`id`, `title`, `artist`, `albumTitle`, `album`, `label`, `remixer`, `mix`, `version`, `composer`, `publisher`, `grouping`, `comment`
+
+**Musical Properties:**
+`key`, `genre`, `bpm`, `year`
+
+**Ratings & Colors:**
+`rating`, `color`
+
+**Technical Properties:**
+`duration`, `bitrate`, `sizeBytes`, `sampleRate`
+
+**Play Statistics:**
+`playCount`, `lastPlayed`
+
+**Dates:**
+`dateAdded`, `dateModified`, `releaseDate`
+
+**File Information:**
+`location`, `filename`, `extension`
+
+**Track Numbers:**
+`trackNumber`, `discNumber`
+
+**Energy/Mood:**
+`energy`
+
+**Custom Fields:**
+`extra1`, `extra2`, `extra3`
+
+**Total:** 38 fields available for comparison
 
 ---
 
@@ -139,12 +163,12 @@ Result: Potential cleanup candidates
 
 See [CHANGELOG.md](CHANGELOG.md) for details on all versions.
 
-### Version 3.0.5 (2025-10-09) - Current
-✅ **All critical bugs fixed**
-- Removed: `async function run()` wrapper
-- Removed: `continue` statements
-- Removed: `_ui.showDialog()` (non-existent API)
-- Fixed: `_vars.playlistsAll` for track assignment
+### Version 3.0.6 (2025-10-09) - Current
+✅ **Updated field list**
+- Added: Missing Lexicon fields (`album`, `version`, `publisher`, `releaseDate`, `filename`, `extension`, `discNumber`)
+- Removed: Non-existent fields (`danceability`, `popularity`, `happiness`, `lyricist`, `producer`)
+- Total: 38 fields available for comparison
+- Better organized field categories
 - **Status: Stable & Production-Ready** 🎉
 
 ---

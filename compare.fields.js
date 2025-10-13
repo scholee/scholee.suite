@@ -5,10 +5,10 @@
  * It is designed to be stable and follows the patterns from official Lexicon example plugins.
  *
  * @author Joël Kuhn
- * @version 3.0.5
+ * @version 3.0.6
  */
 
-_helpers.Report("Plugin execution started (v3.0.5).");
+_helpers.Report("Plugin execution started (v3.0.6).");
 
 // --- HELPER FUNCTIONS ---
 
@@ -40,16 +40,42 @@ _helpers.Report("Helper functions defined.");
 // --- CORE LOGIC ---
 
 // 1. Define a stable list of fields for the dialogs
+// Based on official Lexicon example plugins and API
 _helpers.Report("Step 1: Defining fields for dialogs.");
 const allKeys = [
-    "id", "title", "artist", "albumTitle", "label", "remixer", "mix",
-    "composer", "producer", "grouping", "lyricist", "comment", "key",
-    "genre", "bpm", "rating", "color", "year", "duration", "bitrate",
-    "playCount", "location", "lastPlayed", "dateAdded", "dateModified",
-    "sizeBytes", "sampleRate", "trackNumber", "energy", "danceability",
-    "popularity", "happiness", "extra1", "extra2", "extra3"
+    // Basic metadata
+    "id", "title", "artist", "albumTitle", "album",
+    "label", "remixer", "mix", "version",
+    "composer", "publisher", "grouping", "comment",
+    
+    // Musical properties
+    "key", "genre", "bpm", "year",
+    
+    // Ratings and colors
+    "rating", "color",
+    
+    // Technical properties
+    "duration", "bitrate", "sizeBytes", "sampleRate",
+    
+    // Play statistics
+    "playCount", "lastPlayed",
+    
+    // Dates
+    "dateAdded", "dateModified", "releaseDate",
+    
+    // File information
+    "location", "filename", "extension",
+    
+    // Track numbers
+    "trackNumber", "discNumber",
+    
+    // Energy/Mood (DJ software specific)
+    "energy",
+    
+    // Custom fields
+    "extra1", "extra2", "extra3"
 ].sort();
-_helpers.Report("Fields defined. Found " + allKeys.length + " common fields.");
+_helpers.Report("Fields defined. Found " + allKeys.length + " fields.");
 
 // 2. Show user dialogs
 _helpers.Report("Step 2: Showing user dialogs...");

@@ -4,6 +4,36 @@ All important changes to this plugin are documented in this file.
 
 ---
 
+## [3.0.6] - 2025-10-09 ✅ STABLE
+
+### 🔄 Field List Update
+
+**Goal:** Ensure all comparable fields actually exist in Lexicon DJ based on official example plugins and API.
+
+### ✅ Added Fields
+- `album` - Album name (alternative to albumTitle)
+- `version` - Track version/remix information
+- `publisher` - Publisher/label details
+- `releaseDate` - Official release date
+- `filename` - File name
+- `extension` - File extension
+- `discNumber` - Disc number in multi-disc albums
+
+### ❌ Removed Fields
+- `danceability` - Not available in Lexicon (Spotify/Rekordbox specific)
+- `popularity` - Not available in Lexicon (Spotify specific)
+- `happiness` - Not available in Lexicon (mood analysis)
+- `lyricist` - Not commonly used in DJ software
+- `producer` - Consolidated into composer field
+
+### 📊 Summary
+- **Before:** 34 fields (some non-existent)
+- **After:** 38 fields (all verified)
+- **Better organization:** Fields grouped by category
+- **All fields tested:** Based on official Lexicon example plugins
+
+---
+
 ## [3.0.5] - 2025-10-09 ✅ STABLE
 
 ### 🎉 Status: Fully functional!
