@@ -43,7 +43,8 @@
           "track": {
             "read": [
               "all",
-              "selected"
+              "selected",
+              "view"
             ]
           },
           "network": {

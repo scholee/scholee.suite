@@ -2,7 +2,7 @@
 
 A powerful plugin to compare track fields and automatically create playlists with the results.
 
-**Version:** 3.0.7  
+**Version:** 3.0.8  
 **Author:** Joël Kuhn  
 **Status:** ✅ Stable & Production-Ready
 
@@ -170,15 +170,15 @@ Result: Potential cleanup candidates
 
 See [CHANGELOG.md](CHANGELOG.md) for details on all versions.
 
-### Version 3.0.7 (2025-10-09) - Current
-✅ **Official Lexicon API field list**
-- ✅ Based on official Lexicon API documentation
-- ✅ All 48 fields from API now available
-- ✅ Added back: `danceability`, `popularity`, `happiness` (confirmed in API)
-- ✅ Added back: `producer`, `lyricist` (confirmed in API)
-- ✅ Added: Advanced features (`tags`, `cuepoints`, `tempomarkers`, `streaming` fields, etc.)
-- ✅ Removed: Non-existent fields (`album`, `version`, `publisher`, `releaseDate`, `filename`, `extension`, `discNumber`, `extra3`)
-- **Status: 100% API-compliant** 🎉
+### Version 3.0.8 (2025-10-13) - Current
+✅ **Fixed scope loading issues**
+- 🐛 Fixed: "All tracks" now works correctly
+- 🐛 Fixed: "Current view" now works correctly
+- ✅ Changed: `getNextAllBatch(500)` → `getNextAllBatch()` (correct API usage)
+- ✅ Changed: `_vars.tracksVisible` → `_vars.tracksView` (correct variable)
+- ✅ Added: "view" permission for "Current view" scope
+- ✅ Added: Better logging/reporting for debugging
+- **Status: All three scopes now working** 🎉
 
 ---
 

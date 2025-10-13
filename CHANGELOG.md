@@ -4,6 +4,72 @@ All important changes to this plugin are documented in this file.
 
 ---
 
+## [3.0.8] - 2025-10-13 ✅ STABLE - SCOPE FIXES
+
+### 🐛 Critical Bug Fixes: All Scopes Now Working
+
+**User Report:** Only "Selected tracks" was working. "All tracks" and "Current view" were not loading tracks.
+
+### Root Causes Identified
+
+1. **Incorrect API call:** `getNextAllBatch(500)` with parameter
+2. **Wrong variable:** `_vars.tracksVisible` doesn't exist
+3. **Missing permission:** "view" permission not set
+
+### ✅ Fixes Applied
+
+#### Fix #1: Correct getNextAllBatch() usage
+```javascript
+// BEFORE (incorrect):
+while ((batch = await _library.track.getNextAllBatch(500)) && batch.length > 0)
+
+// AFTER (correct, as per official examples):
+while ((batch = await _library.track.getNextAllBatch()) && batch.length > 0)
+```
+
+#### Fix #2: Correct variable for Current View
+```javascript
+// BEFORE (incorrect - doesn't exist):
+tracksToProcess = _vars.tracksVisible || [];
+
+// AFTER (correct):
+tracksToProcess = _vars.tracksView || [];
+```
+
+#### Fix #3: Add "view" permission
+```json
+"track": {
+  "read": ["all", "selected", "view"]  // Added "view"
+}
+```
+
+#### Fix #4: Better logging
+- Added detailed Report messages for each scope
+- Added batch progress logging
+- Better debugging information
+
+### 📊 Results
+
+| Scope | Before | After |
+|-------|--------|-------|
+| **Selected tracks** | ✅ Working | ✅ Working |
+| **Current view** | ❌ Not working | ✅ **Fixed** |
+| **All tracks** | ❌ Not working | ✅ **Fixed** |
+
+### 🎯 Technical Details
+
+**All tracks scope:**
+- Now correctly loads tracks in batches without parameter
+- Progress bar updates properly
+- Follows official Lexicon example pattern
+
+**Current view scope:**
+- Now uses correct `_vars.tracksView` variable
+- Requires "view" permission in config
+- Loads visible tracks from UI
+
+---
+
 ## [3.0.7] - 2025-10-09 ✅ STABLE - 100% API-COMPLIANT
 
 ### 🎯 Official Lexicon API Field List

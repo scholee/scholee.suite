@@ -5,10 +5,10 @@
  * It is designed to be stable and follows the patterns from official Lexicon example plugins.
  *
  * @author Joël Kuhn
- * @version 3.0.7
+ * @version 3.0.8
  */
 
-_helpers.Report("Plugin execution started (v3.0.7).");
+_helpers.Report("Plugin execution started (v3.0.8).");
 
 // --- HELPER FUNCTIONS ---
 
@@ -110,17 +110,25 @@ const wantMatch = (mode === "Matching");
 // 3. Get tracks to process
 _helpers.Report("Step 3: Getting tracks for scope: " + scope);
 let tracksToProcess = [];
+
 if (scope === "Selected tracks") {
     tracksToProcess = _vars.tracksSelected || [];
+    _helpers.Report("Using selected tracks: " + tracksToProcess.length);
 } else if (scope === "Current view") {
-    tracksToProcess = _vars.tracksVisible || [];
+    // Use tracksView for current view (visible tracks in the UI)
+    tracksToProcess = _vars.tracksView || [];
+    _helpers.Report("Using current view tracks: " + tracksToProcess.length);
 } else { // All tracks
+    _helpers.Report("Loading all tracks in batches...");
     const totalAmount = _vars.tracksAllAmount || 1;
     let batch;
-    while ((batch = await _library.track.getNextAllBatch(500)) && batch.length > 0) {
+    // Important: getNextAllBatch() without parameters (see official examples)
+    while ((batch = await _library.track.getNextAllBatch()) && batch.length > 0) {
         tracksToProcess.push(...batch);
         _ui.progress(tracksToProcess.length / totalAmount);
+        _helpers.Report("Loaded batch, total so far: " + tracksToProcess.length);
     }
+    _helpers.Report("Finished loading all tracks: " + tracksToProcess.length);
 }
 
 if (tracksToProcess.length === 0) {
