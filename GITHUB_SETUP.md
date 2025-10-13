@@ -27,7 +27,7 @@ After creating the repository on GitHub, GitHub will show you commands. You need
 
 ```bash
 # Navigate to plugin directory
-cd /Users/joelkuhn/Documents/Lexicon/Plugins/scholee.suite
+cd ~/Documents/Lexicon/Plugins/scholee.suite
 
 # Add GitHub as remote (replace USERNAME with your GitHub username)
 git remote add origin https://github.com/USERNAME/lexicon-plugin-compare-fields.git
@@ -60,7 +60,7 @@ When you make changes to the plugin:
 
 ```bash
 # 1. Navigate to directory
-cd /Users/joelkuhn/Documents/Lexicon/Plugins/scholee.suite
+cd ~/Documents/Lexicon/Plugins/scholee.suite
 
 # 2. Check changed files
 git status
