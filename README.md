@@ -1,25 +1,25 @@
 # Compare Fields - Lexicon DJ Plugin
 
-Ein leistungsstarkes Plugin zum Vergleichen von Track-Feldern und automatischen Erstellen von Playlists mit den Ergebnissen.
+A powerful plugin to compare track fields and automatically create playlists with the results.
 
 **Version:** 3.0.5  
-**Autor:** Joel Kuhn  
-**Status:** ✅ Stabil & Produktiv
+**Author:** Joel Kuhn  
+**Status:** ✅ Stable & Production-Ready
 
 ---
 
-## 📋 Funktionen
+## 📋 Features
 
-### Kern-Features
-- ✅ **Feldvergleich**: Vergleicht zwei beliebige Track-Felder (z.B. Artist vs. Extra1)
-- ✅ **Flexible Modi**: "Matching" (gleiche Werte) oder "Not matching" (unterschiedliche Werte)
-- ✅ **Drei Scopes**: All tracks, Current view, Selected tracks
-- ✅ **Smart Empty-Handling**: Drei Policies für leere Felder
-- ✅ **Whitespace-Trimming**: Optional Leerzeichen an Rändern entfernen
-- ✅ **Auto-Playlist**: Erstellt Playlist mit Zeitstempel im Ordner "Plugins Scholee"
-- ✅ **Progress-Tracking**: Echtzeit-Updates bei großen Bibliotheken
+### Core Features
+- ✅ **Field Comparison**: Compare any two track fields (e.g., Artist vs. Extra1)
+- ✅ **Flexible Modes**: "Matching" (same values) or "Not matching" (different values)
+- ✅ **Three Scopes**: All tracks, Current view, Selected tracks
+- ✅ **Smart Empty Handling**: Three policies for empty fields
+- ✅ **Whitespace Trimming**: Optionally remove leading/trailing whitespace
+- ✅ **Auto-Playlist**: Creates timestamped playlist in "Plugins Scholee" folder
+- ✅ **Progress Tracking**: Real-time updates for large libraries
 
-### Vergleichbare Felder
+### Comparable Fields
 ```
 id, title, artist, albumTitle, label, remixer, mix,
 composer, producer, grouping, lyricist, comment, key,
@@ -31,133 +31,132 @@ popularity, happiness, extra1, extra2, extra3
 
 ---
 
-## 🚀 Verwendung
+## 🚀 Usage
 
-### 1. Plugin starten
+### 1. Start Plugin
 **Plugins → Compare Fields → Run**
 
-### 2. Dialoge durchgehen
+### 2. Complete Dialogs
 
-| Dialog | Beschreibung | Beispiel |
-|--------|--------------|----------|
-| **Field A** | Erstes Vergleichsfeld | `artist` |
-| **Field B** | Zweites Vergleichsfeld | `extra1` |
-| **Mode** | Matching (gleich) oder Not matching (unterschiedlich) | `Not matching` |
-| **Scope** | Datenquelle | `All tracks` |
-| **Trim whitespace** | Leerzeichen ignorieren? | `true` |
-| **Empty handling** | Verhalten bei leeren Feldern | `exclude` |
+| Dialog | Description | Example |
+|--------|-------------|---------|
+| **Field A** | First comparison field | `artist` |
+| **Field B** | Second comparison field | `extra1` |
+| **Mode** | Matching (equal) or Not matching (different) | `Not matching` |
+| **Scope** | Data source | `All tracks` |
+| **Trim whitespace** | Ignore whitespace? | `true` |
+| **Empty handling** | Behavior for empty fields | `exclude` |
 
-### 3. Bestätigung
-- Vorschau zeigt Anzahl gefundener Tracks
-- "Yes" → Playlist wird erstellt
-- "No" → Abbruch ohne Änderungen
+### 3. Confirmation
+- Preview shows number of tracks found
+- "Yes" → Playlist is created
+- "No" → Cancel without changes
 
-### 4. Ergebnis
-Playlist wird erstellt unter: **Plugins Scholee / Compare YYYY-MM-DD HH:mm:ss**
+### 4. Result
+Playlist is created at: **Plugins Scholee / Compare YYYY-MM-DD HH:mm:ss**
 
 ---
 
 ## 📊 Empty-Handling Policies
 
-| Policy | Verhalten |
-|--------|-----------|
-| **exclude** | Tracks mit leeren Feldern werden übersprungen (empfohlen) |
-| **countAsMatch** | Beide Felder leer = Match |
-| **countAsMismatch** | Beide Felder leer = Mismatch |
+| Policy | Behavior |
+|--------|----------|
+| **exclude** | Tracks with empty fields are skipped (recommended) |
+| **countAsMatch** | Both fields empty = Match |
+| **countAsMismatch** | Both fields empty = Mismatch |
 
 ---
 
-## 💡 Anwendungsbeispiele
+## 💡 Usage Examples
 
-### Beispiel 1: Tags validieren
-**Ziel:** Finde Tracks wo Artist und Extra1 unterschiedlich sind
+### Example 1: Validate Tags
+**Goal:** Find tracks where Artist and Extra1 are different
 ```
 Field A: artist
 Field B: extra1
 Mode: Not matching
 Scope: All tracks
-Result: Tracks mit unterschiedlichen Werten in beiden Feldern
+Result: Tracks with different values in both fields
 ```
 
-### Beispiel 2: Duplikate finden
-**Ziel:** Finde Tracks mit gleichem Titel aber unterschiedlichem Artist
+### Example 2: Find Duplicates
+**Goal:** Find tracks with same title but different artist
 ```
 Field A: title
 Field B: artist
-Mode: Matching (für Titel-Check in zwei Durchläufen)
+Mode: Matching (for title check in two passes)
 ```
 
-### Beispiel 3: Metadaten-Cleanup
-**Ziel:** Finde Tracks wo Comment und Grouping identisch sind
+### Example 3: Metadata Cleanup
+**Goal:** Find tracks where Comment and Grouping are identical
 ```
 Field A: comment
 Field B: grouping
 Mode: Matching
 Scope: Selected tracks
-Result: Potenzielle Cleanup-Kandidaten
+Result: Potential cleanup candidates
 ```
 
 ---
 
-## ⚙️ Technische Details
+## ⚙️ Technical Details
 
 ### Performance
-- **Chunked Processing**: 500 Tracks pro Batch
-- **Progress Updates**: Echtzeit-Fortschritt bei "All tracks"
-- **Speicher-effizient**: Nur Track-IDs im Ergebnis
+- **Chunked Processing**: 500 tracks per batch
+- **Progress Updates**: Real-time progress for "All tracks"
+- **Memory Efficient**: Only track IDs in result
 
-### API-Integration
-- Verwendet `_library.track.getNextAllBatch()` für große Bibliotheken
-- Verwendet `_vars.playlistsAll` für Playlist-Manipulation
-- Kompatibel mit Lexicon Plugin API v2.x
+### API Integration
+- Uses `_library.track.getNextAllBatch()` for large libraries
+- Uses `_vars.playlistsAll` for playlist manipulation
+- Compatible with Lexicon Plugin API v2.x
 
-### Code-Qualität
-- ✅ 0 Linter-Fehler
-- ✅ Modern ES6+ Syntax (const/let, arrow functions, for...of)
-- ✅ Top-Level await Support
-- ✅ Keine continue/break Statements (Lexicon-Kompatibilität)
+### Code Quality
+- ✅ 0 Linter errors
+- ✅ Modern ES6+ syntax (const/let, arrow functions, for...of)
+- ✅ Top-level await support
+- ✅ No continue/break statements (Lexicon compatibility)
 
 ---
 
 ## 🐛 Troubleshooting
 
-### Plugin startet nicht
-- **Lexicon neu starten**
-- **Logs prüfen**: `Logs/scholee.suite/Compare Fields.log`
+### Plugin doesn't start
+- **Restart Lexicon**
+- **Check logs**: `Logs/scholee.suite/Compare Fields.log`
 
-### Keine Tracks gefunden
-- **Scope prüfen**: Sind Tracks in "Selected" oder "Current view"?
-- **Empty-Handling**: "exclude" überspringt leere Felder
+### No tracks found
+- **Check scope**: Are there tracks in "Selected" or "Current view"?
+- **Empty handling**: "exclude" skips empty fields
 
-### Playlist wird nicht erstellt
-- **Permissions prüfen**: Plugin benötigt `playlist.create` Berechtigung
-- **_vars.playlistsAll**: Lexicon muss Playlist-Liste aktualisiert haben
+### Playlist not created
+- **Check permissions**: Plugin requires `playlist.create` permission
+- **_vars.playlistsAll**: Lexicon must have updated playlist list
 
 ---
 
 ## 📝 Changelog
 
-Siehe [CHANGELOG.md](CHANGELOG.md) für Details zu allen Versionen.
+See [CHANGELOG.md](CHANGELOG.md) for details on all versions.
 
-### Version 3.0.5 (2025-10-09) - Aktuell
-✅ **Alle kritischen Bugs behoben**
-- Entfernt: `async function run()` Wrapper
-- Entfernt: `continue` Statements
-- Entfernt: `_ui.showDialog()` (nicht existierende API)
-- Fix: `_vars.playlistsAll` für Track-Zuweisung
-- **Status: Stabil & Produktiv** 🎉
+### Version 3.0.5 (2025-10-09) - Current
+✅ **All critical bugs fixed**
+- Removed: `async function run()` wrapper
+- Removed: `continue` statements
+- Removed: `_ui.showDialog()` (non-existent API)
+- Fixed: `_vars.playlistsAll` for track assignment
+- **Status: Stable & Production-Ready** 🎉
 
 ---
 
 ## 📞 Support
 
-**Autor:** Joel Kuhn  
+**Author:** Joel Kuhn  
 **Discord:** joelkuhn  
-**E-Mail:** joel@example.com
+**Email:** joel@example.com
 
-Bei Fragen oder Problemen bitte via Discord kontaktieren.
+For questions or issues, please contact via Discord.
 
 ---
 
-**Vielen Dank für die Nutzung! 🎵**
-
+**Thank you for using! 🎵**

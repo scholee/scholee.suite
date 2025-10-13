@@ -383,7 +383,7 @@ if (typeof window === 'undefined' && typeof process !== 'undefined') {
   diagnoseEmptyPlaylist();
 }
 
-// Für Browser Console:
+// For Browser Console:
 // var workflowResults = runWorkflowTests();
 // diagnoseEmptyPlaylist();
 

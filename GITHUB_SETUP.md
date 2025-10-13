@@ -1,84 +1,84 @@
 # GitHub Setup - Compare Fields Plugin
 
-## 🎉 Git-Repository ist bereit!
+## 🎉 Git Repository is Ready!
 
-Das lokale Git-Repository wurde erfolgreich initialisiert und der erste Commit wurde erstellt.
+The local Git repository has been successfully initialized and the first commit has been created.
 
 ---
 
-## 📋 Nächste Schritte: Repository auf GitHub hochladen
+## 📋 Next Steps: Upload Repository to GitHub
 
-### Schritt 1: Privates Repository auf GitHub erstellen
+### Step 1: Create Private Repository on GitHub
 
-1. **Gehe zu GitHub**: https://github.com
-2. **Klicke auf "New repository"** (grüner Button oben rechts oder bei https://github.com/new)
-3. **Fülle die Details aus**:
-   - **Repository name**: `lexicon-plugin-compare-fields` (oder ein Name Ihrer Wahl)
+1. **Go to GitHub**: https://github.com
+2. **Click "New repository"** (green button at top right or at https://github.com/new)
+3. **Fill in the details**:
+   - **Repository name**: `lexicon-plugin-compare-fields` (or a name of your choice)
    - **Description**: `Compare Fields Plugin for Lexicon DJ - v3.0.5`
-   - **Visibility**: ✅ **Private** (wichtig!)
-   - **Initialize repository**: ❌ **NICHT** "Add a README file" ankreuzen (wir haben bereits Dateien)
-   - **Add .gitignore**: ❌ **NICHT** auswählen (wir haben bereits eine)
-   - **Choose a license**: Optional (empfohlen: MIT License)
-4. **Klicke auf "Create repository"**
+   - **Visibility**: ✅ **Private** (important!)
+   - **Initialize repository**: ❌ **DO NOT** check "Add a README file" (we already have files)
+   - **Add .gitignore**: ❌ **DO NOT** select (we already have one)
+   - **Choose a license**: Optional (recommended: MIT License)
+4. **Click "Create repository"**
 
-### Schritt 2: Remote hinzufügen und pushen
+### Step 2: Add Remote and Push
 
-Nachdem das Repository auf GitHub erstellt wurde, zeigt GitHub Ihnen Befehle an. Sie benötigen diese Befehle:
+After creating the repository on GitHub, GitHub will show you commands. You need these commands:
 
 ```bash
-# Wechsle ins Plugin-Verzeichnis
+# Navigate to plugin directory
 cd /Users/joelkuhn/Documents/Lexicon/Plugins/scholee.suite
 
-# Füge GitHub als Remote hinzu (ersetze USERNAME mit Ihrem GitHub-Benutzernamen)
+# Add GitHub as remote (replace USERNAME with your GitHub username)
 git remote add origin https://github.com/USERNAME/lexicon-plugin-compare-fields.git
 
-# Pushe den Code zu GitHub
+# Push code to GitHub
 git push -u origin main
 ```
 
-**WICHTIG**: Ersetzen Sie `USERNAME` mit Ihrem GitHub-Benutzernamen!
+**IMPORTANT**: Replace `USERNAME` with your GitHub username!
 
-### Schritt 3: Authentifizierung
+### Step 3: Authentication
 
-Beim ersten Push werden Sie nach Ihren GitHub-Zugangsdaten gefragt:
+When pushing for the first time, you'll be asked for your GitHub credentials:
 
-**Option A: Personal Access Token (empfohlen)**
-1. Gehe zu: https://github.com/settings/tokens
-2. Klicke "Generate new token (classic)"
-3. Wähle Scope: `repo` (voller Zugriff auf private Repositories)
-4. Generiere Token und kopiere es
-5. Verwende Token als Passwort beim Git-Push
+**Option A: Personal Access Token (recommended)**
+1. Go to: https://github.com/settings/tokens
+2. Click "Generate new token (classic)"
+3. Select scope: `repo` (full access to private repositories)
+4. Generate token and copy it
+5. Use token as password when Git prompts for credentials
 
-**Option B: SSH-Key (fortgeschritten)**
-- Siehe: https://docs.github.com/en/authentication/connecting-to-github-with-ssh
+**Option B: SSH Key (advanced)**
+- See: https://docs.github.com/en/authentication/connecting-to-github-with-ssh
 
 ---
 
-## 📝 Zukünftige Updates
+## 📝 Future Updates
 
-Wenn Sie Änderungen am Plugin machen:
+When you make changes to the plugin:
 
 ```bash
-# 1. Wechsle ins Verzeichnis
+# 1. Navigate to directory
 cd /Users/joelkuhn/Documents/Lexicon/Plugins/scholee.suite
 
-# 2. Prüfe geänderte Dateien
+# 2. Check changed files
 git status
 
-# 3. Füge Änderungen hinzu
+# 3. Add changes
 git add .
 
-# 4. Commit mit Beschreibung
-git commit -m "Beschreibung der Änderung"
+# 4. Commit with description
+git commit -m "Description of change"
 
-# 5. Push zu GitHub
+# 5. Push to GitHub
 git push
 ```
 
-### Beispiel für Version-Update:
+### Example for Version Update:
 
 ```bash
-# Nach Änderung der Versionsnummer auf 3.0.6
+# After changing version number to 3.0.6
 git add compare.fields.js CHANGELOG.md README.md
 git commit -m "Update to v3.0.6: Fix XYZ"
 git push
@@ -86,26 +86,26 @@ git push
 
 ---
 
-## 🏷️ Git Tags für Versionen (optional)
+## 🏷️ Git Tags for Versions (optional)
 
-Um Versionen zu markieren:
+To mark versions:
 
 ```bash
-# Tag für aktuelle Version erstellen
+# Create tag for current version
 git tag -a v3.0.5 -m "Version 3.0.5 - Stable release"
 
-# Tag zu GitHub pushen
+# Push tag to GitHub
 git push origin v3.0.5
 
-# Alle Tags anzeigen
+# Show all tags
 git tag
 ```
 
 ---
 
-## 📊 Repository-Struktur auf GitHub
+## 📊 Repository Structure on GitHub
 
-Nach dem Upload sieht Ihr Repository so aus:
+After upload, your repository will look like this:
 
 ```
 lexicon-plugin-compare-fields/
@@ -122,43 +122,42 @@ lexicon-plugin-compare-fields/
 
 ---
 
-## ✅ Checkliste
+## ✅ Checklist
 
-- [x] Git-Repository initialisiert
-- [x] .gitignore erstellt
-- [x] Initial Commit erstellt
-- [ ] GitHub-Repository erstellt (privat)
-- [ ] Remote hinzugefügt
-- [ ] Code zu GitHub gepusht
-- [ ] Optional: Release-Tag v3.0.5 erstellt
+- [x] Git repository initialized
+- [x] .gitignore created
+- [x] Initial commit created
+- [ ] GitHub repository created (private)
+- [ ] Remote added
+- [ ] Code pushed to GitHub
+- [ ] Optional: Release tag v3.0.5 created
 
 ---
 
-## 🆘 Hilfe
+## 🆘 Help
 
-Falls Probleme auftreten:
+If you encounter problems:
 
-**Remote prüfen:**
+**Check remote:**
 ```bash
 git remote -v
 ```
 
-**Remote ändern:**
+**Change remote:**
 ```bash
 git remote set-url origin https://github.com/USERNAME/lexicon-plugin-compare-fields.git
 ```
 
-**Commit-Historie anzeigen:**
+**Show commit history:**
 ```bash
 git log --oneline
 ```
 
-**Lokale Änderungen verwerfen:**
+**Discard local changes:**
 ```bash
 git reset --hard HEAD
 ```
 
 ---
 
-**Viel Erfolg! 🚀**
-
+**Good luck! 🚀**

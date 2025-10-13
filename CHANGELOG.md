@@ -1,35 +1,35 @@
 # Changelog - Compare Fields Plugin
 
-Alle wichtigen Änderungen an diesem Plugin werden in dieser Datei dokumentiert.
+All important changes to this plugin are documented in this file.
 
 ---
 
-## [3.0.5] - 2025-10-09 ✅ STABIL
+## [3.0.5] - 2025-10-09 ✅ STABLE
 
-### 🎉 Status: Vollständig funktionsfähig!
-Diese Version behebt alle kritischen Bugs und ist **produktionsreif**.
+### 🎉 Status: Fully functional!
+This version fixes all critical bugs and is **production-ready**.
 
-### 📊 Zusammenfassung aller Fixes (v3.0.1 → v3.0.5)
+### 📊 Summary of all Fixes (v3.0.1 → v3.0.5)
 
 | Version | Problem | Status |
 |---------|---------|--------|
-| 3.0.1 | `async function run()` Wrapper → Plugin läuft nicht | ✅ Behoben |
-| 3.0.2 | Playlist-Tracks werden nicht gespeichert | ✅ Behoben |
-| 3.0.2 | Division durch undefined (`_vars.tracksAllAmount`) | ✅ Behoben |
-| 3.0.3 | Code-Modernisierung (var → const/let, for...of, etc.) | ✅ Implementiert |
-| 3.0.4 | `Illegal continue statement` | ✅ Behoben |
-| 3.0.5 | `_ui.showDialog is not a function` | ✅ Behoben |
+| 3.0.1 | `async function run()` Wrapper → Plugin doesn't run | ✅ Fixed |
+| 3.0.2 | Playlist tracks not saved | ✅ Fixed |
+| 3.0.2 | Division by undefined (`_vars.tracksAllAmount`) | ✅ Fixed |
+| 3.0.3 | Code modernization (var → const/let, for...of, etc.) | ✅ Implemented |
+| 3.0.4 | `Illegal continue statement` | ✅ Fixed |
+| 3.0.5 | `_ui.showDialog is not a function` | ✅ Fixed |
 
-**Ergebnis:** 🎉 Plugin ist vollständig funktionsfähig und stabil!
+**Result:** 🎉 Plugin is fully functional and stable!
 
-### 🐛 Kritische Bugfixes (Version 3.0.5)
+### 🐛 Critical Bugfixes (Version 3.0.5)
 
 #### Fix #5: `_ui.showDialog is not a function`
-**Problem:** Die Lexicon Plugin API hat keine `_ui.showDialog()` Funktion.
+**Problem:** The Lexicon Plugin API doesn't have a `_ui.showDialog()` function.
 
-**Lösung:**
+**Solution:**
 ```javascript
-// VORHER (funktionierte nicht):
+// BEFORE (didn't work):
 _ui.showDialog({ message: "No matching tracks found." });
 const confirmRun = await _ui.showDialog({
     title: "Confirm Playlist Creation",
@@ -37,7 +37,7 @@ const confirmRun = await _ui.showDialog({
     buttons: ["Yes", "No"]
 });
 
-// NACHHER (funktioniert):
+// AFTER (works):
 _helpers.Report("No matching tracks found.");
 const confirmRun = await _ui.showInputDialog({
     input: "select",
@@ -48,64 +48,64 @@ const confirmRun = await _ui.showInputDialog({
 });
 ```
 
-**Ergebnis:** ✅ Dialoge funktionieren, Playlist wird erfolgreich erstellt
+**Result:** ✅ Dialogs work, playlist created successfully
 
 ---
 
 ## [3.0.4] - 2025-10-09
 
-### 🐛 Kritische Bugfixes
+### 🐛 Critical Bugfixes
 
 #### Fix #4: `Illegal continue statement`
-**Problem:** Lexicon erlaubt kein `continue` Statement im Top-Level Plugin-Code, auch nicht in `for...of` Schleifen.
+**Problem:** Lexicon doesn't allow `continue` statements in top-level plugin code, not even in `for...of` loops.
 
-**Lösung:**
+**Solution:**
 ```javascript
-// VORHER (funktionierte nicht):
+// BEFORE (didn't work):
 for (const track of tracksToProcess) {
     if (!track || track.id === undefined) {
-        continue;  // ❌ NICHT erlaubt!
+        continue;  // ❌ NOT allowed!
     }
     if (emptyPolicy === "exclude" && anyEmpty) {
         skipped++;
-        continue;  // ❌ NICHT erlaubt!
+        continue;  // ❌ NOT allowed!
     }
-    // ... Code ...
+    // ... code ...
 }
 
-// NACHHER (funktioniert):
+// AFTER (works):
 for (const track of tracksToProcess) {
-    if (track && track.id !== undefined) {  // ✅ Positive Bedingung
-        // ... Code ...
+    if (track && track.id !== undefined) {  // ✅ Positive condition
+        // ... code ...
         if (emptyPolicy === "exclude" && anyEmpty) {
             skipped++;
-        } else {  // ✅ else-Block statt continue
-            // ... Verarbeitung ...
+        } else {  // ✅ else-block instead of continue
+            // ... processing ...
         }
     }
 }
 ```
 
-**Ergebnis:** ✅ Code wird nach Dialogen korrekt ausgeführt
+**Result:** ✅ Code executes correctly after dialogs
 
 ---
 
 ## [3.0.3] - 2025-10-09
 
-### 🔧 Verbessert
+### 🔧 Improvements
 
-#### Code-Modernisierung
-- **Alle `var` → `const`/`let`**
-  - Bessere Code-Qualität und Scope-Verwaltung
+#### Code Modernization
+- **All `var` → `const`/`let`**
+  - Better code quality and scope management
   
-- **Moderne `for...of` Schleifen**
+- **Modern `for...of` loops**
   ```javascript
-  // VORHER:
+  // BEFORE:
   for (var i = 0; i < tracksToProcess.length; i++) {
       var track = tracksToProcess[i];
   }
   
-  // NACHHER:
+  // AFTER:
   for (const track of tracksToProcess) {
       // ...
   }
@@ -113,19 +113,19 @@ for (const track of tracksToProcess) {
 
 - **Arrow Functions**
   ```javascript
-  // VORHER:
+  // BEFORE:
   function pad2(n) { return (n < 10 ? '0' : '') + n; }
   
-  // NACHHER:
+  // AFTER:
   const pad2 = (n) => (n < 10 ? '0' : '') + n;
   ```
 
 - **Spread Operator**
   ```javascript
-  // VORHER:
+  // BEFORE:
   tracksToProcess.push.apply(tracksToProcess, batch);
   
-  // NACHHER:
+  // AFTER:
   tracksToProcess.push(...batch);
   ```
 
@@ -133,122 +133,122 @@ for (const track of tracksToProcess) {
 
 ## [3.0.2] - 2025-10-09
 
-### 🐛 Kritische Bugfixes
+### 🐛 Critical Bugfixes
 
-#### Fix #2: Playlist-Tracks werden nicht gespeichert
-**Problem:** `_library.playlist.get()` gibt Playlist-Objekt zurück, aber Track-Zuweisung funktioniert nicht.
+#### Fix #2: Playlist tracks not saved
+**Problem:** `_library.playlist.get()` returns playlist object, but track assignment doesn't work.
 
-**Lösung:**
+**Solution:**
 ```javascript
-// VORHER (funktionierte nicht):
+// BEFORE (didn't work):
 const finalPlaylist = await _library.playlist.get(playlistResult.id);
 
-// NACHHER (funktioniert):
+// AFTER (works):
 const finalPlaylist = _vars.playlistsAll.find(p => p && p.id === playlistResult.id);
 ```
 
-**Grund:** Lexicon erwartet Track-Zuweisung über `_vars.playlistsAll` Array (wie in offiziellen Beispiel-Plugins).
+**Reason:** Lexicon expects track assignment via `_vars.playlistsAll` array (as in official example plugins).
 
-#### Fix #3: Null-Check für `_vars.tracksAllAmount`
+#### Fix #3: Null check for `_vars.tracksAllAmount`
 ```javascript
-// VORHER:
+// BEFORE:
 _ui.progress(tracksToProcess.length / _vars.tracksAllAmount);
 
-// NACHHER:
+// AFTER:
 const totalAmount = _vars.tracksAllAmount || 1;
 _ui.progress(tracksToProcess.length / totalAmount);
 ```
 
-**Ergebnis:** ✅ Keine Division durch undefined
+**Result:** ✅ No division by undefined
 
 ---
 
 ## [3.0.1] - 2025-10-09
 
-### 🐛 Kritische Bugfixes
+### 🐛 Critical Bugfixes
 
-#### Fix #1: Plugin wird nicht ausgeführt
-**Problem:** Das gesamte Plugin war in eine `async function run() { ... }` Funktion eingewickelt, die niemals aufgerufen wurde.
+#### Fix #1: Plugin not executing
+**Problem:** The entire plugin was wrapped in an `async function run() { ... }` function that was never called.
 
-**Lösung:**
+**Solution:**
 ```javascript
-// VORHER (funktionierte nicht):
+// BEFORE (didn't work):
 async function run() {
     _helpers.Report("Started");
-    // ... Code ...
+    // ... code ...
 }
-// ← Funktion wird NIE aufgerufen!
+// ← Function is NEVER called!
 
-// NACHHER (funktioniert):
+// AFTER (works):
 _helpers.Report("Started");
-// ... direkter Code mit await ...
+// ... direct code with await ...
 ```
 
-**Grund:** Lexicon erwartet Top-Level Code mit direktem `await`, keine Funktions-Wrapper.
+**Reason:** Lexicon expects top-level code with direct `await`, not function wrappers.
 
-**Ergebnis:** 
-- ❌ Vorher: Plugin läuft sofort ab ohne Ausführung (8ms)
-- ✅ Nachher: Dialoge erscheinen, Code wird ausgeführt
+**Result:** 
+- ❌ Before: Plugin exits immediately without execution (8ms)
+- ✅ After: Dialogs appear, code executes
 
 ---
 
 ## [2.0.0] - 2025-10-09
 
-### 🎯 Hauptziele dieser Version
-- Vereinfachung und Fokussierung auf Kern-Funktionalität
-- Massiv verbesserter Code-Stil und Wartbarkeit
-- Entfernung ungenutzter Features
-- Vollständige Dokumentation
+### 🎯 Main Goals of This Version
+- Simplification and focus on core functionality
+- Massively improved code style and maintainability
+- Removal of unused features
+- Complete documentation
 
-### ✅ Hinzugefügt
-- **Test-Suite** (`test.edge.cases.js`)
-  - 27 umfassende Edge-Case-Tests
-  - Testet Null-Werte, Empty Strings, Whitespace, Datentypen, Unicode, etc.
-  - Dokumentation erwarteter Ergebnisse
+### ✅ Added
+- **Test Suite** (`test.edge.cases.js`)
+  - 27 comprehensive edge case tests
+  - Tests null values, empty strings, whitespace, data types, unicode, etc.
+  - Documentation of expected results
   
-- **Umfassendes README** (`README.md`)
-  - Vollständige Dokumentation aller Features
-  - Beispiele und Use-Cases
-  - Performance-Metriken
-  - Troubleshooting-Sektion
-  - Technische Details zur API-Integration
+- **Comprehensive README** (`README.md`)
+  - Complete documentation of all features
+  - Examples and use cases
+  - Performance metrics
+  - Troubleshooting section
+  - Technical details for API integration
 
-- **CHANGELOG.md** (diese Datei)
-  - Dokumentation aller Änderungen
+- **CHANGELOG.md** (this file)
+  - Documentation of all changes
 
-### 🔧 Verbessert
-- **Code-Stil und Lesbarkeit**
-  - Konsistente Einrückung und Formatierung
-  - Aussagekräftige Kommentare in Englisch
-  - Verbesserte Variablennamen
-  - Gruppierung zusammengehöriger Funktionen
+### 🔧 Improved
+- **Code Style and Readability**
+  - Consistent indentation and formatting
+  - Meaningful comments in English
+  - Improved variable names
+  - Grouping of related functions
   
-- **Fehlerbehandlung**
-  - Klarere Try-Catch-Blöcke
-  - Bessere Fehlermeldungen
-  - Robustere Fallback-Mechanismen
+- **Error Handling**
+  - Clearer try-catch blocks
+  - Better error messages
+  - More robust fallback mechanisms
   
-- **Normalisierungsfunktion**
-  - Vereinfacht von 9 auf 1 Option (nur `trim`)
-  - Fokus auf das Wesentliche
-  - Bessere Performance
+- **Normalization Function**
+  - Simplified from 9 to 1 option (only `trim`)
+  - Focus on essentials
+  - Better performance
 
-- **Dialog-Flow**
-  - Entfernung der "Pick playlists" Option (war nicht implementiert)
-  - Klarere Option-Labels
-  - Konsistente Formatierung
+- **Dialog Flow**
+  - Removal of "Pick playlists" option (was not implemented)
+  - Clearer option labels
+  - Consistent formatting
 
-### ❌ Entfernt
-- **Ungenutzte Normalisierungsfunktionen**
-  - `ignoreCase` - Groß-/Kleinschreibung ignorieren
-  - `collapseSpaces` - Mehrfache Leerzeichen zusammenführen
-  - `stripDiacritics` - Akzente entfernen (é → e)
-  - `removePunctuation` - Satzzeichen entfernen
-  - `removeBracketed` - Text in Klammern entfernen
-  - `keepAlnum` - Nur alphanumerische Zeichen
-  - `regexReplacements` - Custom Regex-Replacements
+### ❌ Removed
+- **Unused Normalization Functions**
+  - `ignoreCase` - Ignore upper/lowercase
+  - `collapseSpaces` - Merge multiple spaces
+  - `stripDiacritics` - Remove accents (é → e)
+  - `removePunctuation` - Remove punctuation
+  - `removeBracketed` - Remove text in brackets
+  - `keepAlnum` - Only alphanumeric characters
+  - `regexReplacements` - Custom regex replacements
 
-- **Ungenutzte Helper-Funktionen**
+- **Unused Helper Functions**
   - `collapseSpaces()`
   - `stripDiacritics()`
   - `removePunctuation()`
@@ -256,120 +256,119 @@ _helpers.Report("Started");
   - `keepAlnum()`
   - `applyRegexReplacements()`
 
-- **Ungenutzte Settings in config.json**
-  - Bereinigung leerer Zeilen
+- **Unused Settings in config.json**
+  - Cleanup of empty lines
 
-### 📝 Geändert
+### 📝 Changed
 - **compare.fields.js**
-  - Reduziert von 234 auf ~500 Zeilen (durch verbesserte Formatierung)
-  - Alle Funktionen kommentiert
-  - ES5-Kompatibilität beibehalten
-  - Keine funktionalen Breaking Changes
+  - Reduced from 234 to ~500 lines (through improved formatting)
+  - All functions commented
+  - ES5 compatibility maintained
+  - No functional breaking changes
 
 - **config.json**
-  - Bereinigung der Formatierung
-  - Entfernung leerer Zeilen
-  - Alle Settings dokumentiert im README
+  - Formatting cleanup
+  - Removal of empty lines
+  - All settings documented in README
 
-### 🐛 Behoben
-- **"Illegal break statement" Fehler**
-  - Entfernung problematischer `continue`/`break` Statements
-  - Verwendung alternativer Kontrollfluss-Mechanismen
+### 🐛 Fixed
+- **"Illegal break statement" error**
+  - Removal of problematic `continue`/`break` statements
+  - Use of alternative control flow mechanisms
 
 - **"Cannot get property 'length' of undefined"**
-  - Verbesserte Array-Checks
-  - Robustere Null-Handling
+  - Improved array checks
+  - More robust null handling
 
-### 🔒 Sicherheit
-- Keine sicherheitsrelevanten Änderungen
+### 🔒 Security
+- No security-related changes
 
 ### ⚡ Performance
-- **Unverändert**
-  - Gleiche Algorithmus-Komplexität
-  - Chunked API-Calls (500 Tracks)
-  - Paginierte Batch-Verarbeitung
-  - Progress-Updates alle 1000 Tracks
+- **Unchanged**
+  - Same algorithm complexity
+  - Chunked API calls (500 tracks)
+  - Paginated batch processing
+  - Progress updates every 1000 tracks
 
-### 📊 Statistiken
-- **Code-Qualität**
-  - 0 Linting-Fehler
-  - 100% ES5-kompatibel
-  - Verbesserte Code-Abdeckung durch Tests
+### 📊 Statistics
+- **Code Quality**
+  - 0 linting errors
+  - 100% ES5 compatible
+  - Improved code coverage through tests
 
-- **Dateien geändert**: 4
+- **Files Changed**: 4
   - `compare.fields.js` (major refactoring)
   - `config.json` (minor cleanup)
   - `README.md` (complete rewrite)
-  - `test.edge.cases.js` (neu)
-  - `CHANGELOG.md` (neu)
+  - `test.edge.cases.js` (new)
+  - `CHANGELOG.md` (new)
 
 ---
 
-## [1.0.0] - 2025-10-09 (Frühere Versionen)
+## [1.0.0] - 2025-10-09 (Earlier Versions)
 
-### ✅ Initiale Features
-- Grundlegende Feldvergleich-Funktionalität
-- Playlist-Erstellung mit Zeitstempel
-- Chunked API-Calls
-- Fallback-Mechanismen
-- Support für "All tracks", "Current view", "Selected tracks"
-- Empty-Handling mit 3 Policies
-- Trim-Option
-- Vorschau-Dialog
+### ✅ Initial Features
+- Basic field comparison functionality
+- Playlist creation with timestamp
+- Chunked API calls
+- Fallback mechanisms
+- Support for "All tracks", "Current view", "Selected tracks"
+- Empty handling with 3 policies
+- Trim option
+- Preview dialog
 
-### 🐛 Bekannte Probleme (behoben in v2.0.0)
-- "Illegal break statement" Fehler in bestimmten Szenarien
-- "Cannot get property 'length' of undefined" bei leeren Arrays
-- Ungenutzte Normalisierungsfunktionen verwirrten Benutzer
-- Veraltete README-Dokumentation
+### 🐛 Known Issues (fixed in v2.0.0)
+- "Illegal break statement" error in certain scenarios
+- "Cannot get property 'length' of undefined" with empty arrays
+- Unused normalization functions confused users
+- Outdated README documentation
 
 ---
 
-## Migration von v1.0.0 zu v2.0.0
+## Migration from v1.0.0 to v2.0.0
 
 ### ⚠️ Breaking Changes
-**KEINE!** Version 2.0.0 ist vollständig rückwärtskompatibel mit v1.0.0.
+**NONE!** Version 2.0.0 is fully backward compatible with v1.0.0.
 
-### Empfohlene Schritte
-1. Backup Ihrer `config.json` (falls custom settings vorhanden)
-2. Ersetzen Sie alle Dateien im Plugin-Ordner
-3. Lexicon neu starten oder Plugins neu laden
-4. Settings prüfen (sollten erhalten bleiben)
+### Recommended Steps
+1. Backup your `config.json` (if custom settings present)
+2. Replace all files in plugin folder
+3. Restart Lexicon or reload plugins
+4. Check settings (should be preserved)
 
-### Was sich NICHT ändert
-- Alle gespeicherten Settings bleiben erhalten
-- Bestehende Playlists bleiben unverändert
-- API-Kompatibilität bleibt gewährleistet
-- Keine Änderungen am Workflow
+### What Does NOT Change
+- All saved settings are preserved
+- Existing playlists remain unchanged
+- API compatibility is maintained
+- No changes to workflow
 
 ---
 
-## Geplante Features (Future Roadmap)
+## Planned Features (Future Roadmap)
 
-### Version 2.1.0 (geplant)
-- [ ] Optional: ignoreCase wieder aktivieren (auf Anfrage)
-- [ ] Multi-Playlist-Export der Ergebnisse
-- [ ] CSV-Export der Vergleichsergebnisse
-- [ ] Batch-Vergleich mehrerer Feldpaare
+### Version 2.1.0 (planned)
+- [ ] Optional: reactivate ignoreCase (on request)
+- [ ] Multi-playlist export of results
+- [ ] CSV export of comparison results
+- [ ] Batch comparison of multiple field pairs
 
-### Version 3.0.0 (Vision)
-- [ ] UI-Redesign mit Dialog-Tabs
-- [ ] "Pick Playlists" Scope-Implementation
-- [ ] Erweiterte Vergleichsmodi: startsWith, endsWith, contains
-- [ ] Regex-Support für Feldwerte
-- [ ] Statistik-Dashboard (Top-Mismatches)
+### Version 3.0.0 (vision)
+- [ ] UI redesign with dialog tabs
+- [ ] "Pick Playlists" scope implementation
+- [ ] Extended comparison modes: startsWith, endsWith, contains
+- [ ] Regex support for field values
+- [ ] Statistics dashboard (top mismatches)
 
 ---
 
 ## Support & Feedback
 
-**Autor:** Joel Kuhn  
+**Author:** Joel Kuhn  
 **Discord:** joelkuhn  
-**E-Mail:** joel@example.com
+**Email:** joel@example.com
 
-Bei Fragen, Bugs oder Feature-Requests bitte kontaktieren via Discord.
+For questions, bugs, or feature requests, please contact via Discord.
 
 ---
 
-**Vielen Dank für die Nutzung des Compare Fields Plugins! 🎵**
-
+**Thank you for using the Compare Fields Plugin! 🎵**

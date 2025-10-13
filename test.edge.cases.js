@@ -439,14 +439,14 @@ function runTests() {
 }
 
 // ============================================================================
-// MANUAL TEST EXECUTION (für Node.js oder Browser Console)
+// MANUAL TEST EXECUTION (for Node.js or Browser Console)
 // ============================================================================
 
 if (typeof module !== 'undefined' && module.exports) {
   module.exports = { runTests: runTests, tests: tests };
 }
 
-// Für Browser Console:
+// For Browser Console:
 // var testResults = runTests();
 // console.table(testResults.results);
 // console.log("Passed:", testResults.passed, "/ Failed:", testResults.failed);
