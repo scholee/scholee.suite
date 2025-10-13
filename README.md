@@ -2,7 +2,7 @@
 
 A powerful plugin to compare track fields and automatically create playlists with the results.
 
-**Version:** 3.0.6  
+**Version:** 3.0.7  
 **Author:** Joël Kuhn  
 **Status:** ✅ Stable & Production-Ready
 
@@ -21,8 +21,10 @@ A powerful plugin to compare track fields and automatically create playlists wit
 
 ### Comparable Fields
 
+**All fields based on official Lexicon API documentation:**
+
 **Basic Metadata:**
-`id`, `title`, `artist`, `albumTitle`, `album`, `label`, `remixer`, `mix`, `version`, `composer`, `publisher`, `grouping`, `comment`
+`id`, `type`, `title`, `artist`, `albumTitle`, `label`, `remixer`, `mix`, `composer`, `producer`, `grouping`, `lyricist`, `comment`
 
 **Musical Properties:**
 `key`, `genre`, `bpm`, `year`
@@ -31,27 +33,32 @@ A powerful plugin to compare track fields and automatically create playlists wit
 `rating`, `color`
 
 **Technical Properties:**
-`duration`, `bitrate`, `sizeBytes`, `sampleRate`
+`duration`, `bitrate`, `sizeBytes`, `sampleRate`, `fileType`
 
 **Play Statistics:**
 `playCount`, `lastPlayed`
 
 **Dates:**
-`dateAdded`, `dateModified`, `releaseDate`
+`dateAdded`, `dateModified`
 
 **File Information:**
-`location`, `filename`, `extension`
+`location`, `locationUnique`
 
 **Track Numbers:**
-`trackNumber`, `discNumber`
+`trackNumber`
 
-**Energy/Mood:**
-`energy`
+**Energy/Mood Analysis:**
+`energy`, `danceability`, `popularity`, `happiness`
 
 **Custom Fields:**
-`extra1`, `extra2`, `extra3`
+`extra1`, `extra2`
 
-**Total:** 38 fields available for comparison
+**Advanced Features (read-only):**
+`tags`, `importSource`, `tempomarkers`, `cuepoints`, `incoming`, `archived`, `archivedSince`, `beatshiftCase`, `fingerprint`, `streamingService`, `streamingId`
+
+**Total:** 48 fields available for comparison
+
+> **Note:** Some fields are read-only and belong to file properties (location, bitrate, etc.)
 
 ---
 
@@ -163,13 +170,15 @@ Result: Potential cleanup candidates
 
 See [CHANGELOG.md](CHANGELOG.md) for details on all versions.
 
-### Version 3.0.6 (2025-10-09) - Current
-✅ **Updated field list**
-- Added: Missing Lexicon fields (`album`, `version`, `publisher`, `releaseDate`, `filename`, `extension`, `discNumber`)
-- Removed: Non-existent fields (`danceability`, `popularity`, `happiness`, `lyricist`, `producer`)
-- Total: 38 fields available for comparison
-- Better organized field categories
-- **Status: Stable & Production-Ready** 🎉
+### Version 3.0.7 (2025-10-09) - Current
+✅ **Official Lexicon API field list**
+- ✅ Based on official Lexicon API documentation
+- ✅ All 48 fields from API now available
+- ✅ Added back: `danceability`, `popularity`, `happiness` (confirmed in API)
+- ✅ Added back: `producer`, `lyricist` (confirmed in API)
+- ✅ Added: Advanced features (`tags`, `cuepoints`, `tempomarkers`, `streaming` fields, etc.)
+- ✅ Removed: Non-existent fields (`album`, `version`, `publisher`, `releaseDate`, `filename`, `extension`, `discNumber`, `extra3`)
+- **Status: 100% API-compliant** 🎉
 
 ---
 

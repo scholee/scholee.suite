@@ -4,7 +4,64 @@ All important changes to this plugin are documented in this file.
 
 ---
 
-## [3.0.6] - 2025-10-09 ✅ STABLE
+## [3.0.7] - 2025-10-09 ✅ STABLE - 100% API-COMPLIANT
+
+### 🎯 Official Lexicon API Field List
+
+**Critical Update:** Field list now 100% based on **official Lexicon API documentation**.
+
+### ✅ Added Fields (that were incorrectly removed in v3.0.6)
+- `producer` - **Confirmed in API** (was incorrectly removed)
+- `lyricist` - **Confirmed in API** (was incorrectly removed)
+- `danceability` - **Confirmed in API** (was incorrectly removed)
+- `popularity` - **Confirmed in API** (was incorrectly removed)
+- `happiness` - **Confirmed in API** (was incorrectly removed)
+
+### ✅ Added Advanced Features (new)
+- `type` - Track type
+- `tags` - Custom tags (read-only)
+- `importSource` - Import source
+- `locationUnique` - Unique location identifier
+- `tempomarkers` - Tempo markers (read-only)
+- `cuepoints` - Cue points (read-only)
+- `incoming` - Incoming status
+- `archived` - Archived status
+- `archivedSince` - Archive date
+- `beatshiftCase` - Beatshift case
+- `fingerprint` - Audio fingerprint
+- `streamingService` - Streaming service
+- `streamingId` - Streaming ID
+
+### ❌ Removed Fields (that don't exist in API)
+- `album` - Not in API (use `albumTitle` instead)
+- `version` - Not in API
+- `publisher` - Not in API
+- `releaseDate` - Not in API
+- `filename` - Not in API (use `fileType` instead)
+- `extension` - Not in API (use `fileType` instead)
+- `discNumber` - Not in API
+- `extra3` - Not in API (only `extra1` and `extra2` exist)
+
+### 📊 Summary
+- **v3.0.6:** 38 fields (partially incorrect)
+- **v3.0.7:** **48 fields** (100% API-compliant)
+- **Source:** Official Lexicon API documentation
+- **Status:** All fields verified against API
+
+### 📋 Complete Field List (alphabetically sorted)
+```
+archived, archivedSince, artist, albumTitle, beatshiftCase, bitrate, bpm,
+color, comment, composer, cuepoints, danceability, dateAdded, dateModified,
+duration, energy, extra1, extra2, fileType, fingerprint, genre, grouping,
+happiness, id, importSource, incoming, key, label, lastPlayed, location,
+locationUnique, lyricist, mix, playCount, popularity, producer, rating,
+remixer, sampleRate, sizeBytes, streamingId, streamingService, tags,
+tempomarkers, title, trackNumber, type, year
+```
+
+---
+
+## [3.0.6] - 2025-10-09 ⚠️ PARTIALLY INCORRECT
 
 ### 🔄 Field List Update
 

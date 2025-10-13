@@ -5,10 +5,10 @@
  * It is designed to be stable and follows the patterns from official Lexicon example plugins.
  *
  * @author Joël Kuhn
- * @version 3.0.6
+ * @version 3.0.7
  */
 
-_helpers.Report("Plugin execution started (v3.0.6).");
+_helpers.Report("Plugin execution started (v3.0.7).");
 
 // --- HELPER FUNCTIONS ---
 
@@ -40,13 +40,13 @@ _helpers.Report("Helper functions defined.");
 // --- CORE LOGIC ---
 
 // 1. Define a stable list of fields for the dialogs
-// Based on official Lexicon example plugins and API
+// Based on official Lexicon API documentation
 _helpers.Report("Step 1: Defining fields for dialogs.");
 const allKeys = [
     // Basic metadata
-    "id", "title", "artist", "albumTitle", "album",
-    "label", "remixer", "mix", "version",
-    "composer", "publisher", "grouping", "comment",
+    "id", "type", "title", "artist", "albumTitle",
+    "label", "remixer", "mix",
+    "composer", "producer", "grouping", "lyricist", "comment",
     
     // Musical properties
     "key", "genre", "bpm", "year",
@@ -55,25 +55,31 @@ const allKeys = [
     "rating", "color",
     
     // Technical properties
-    "duration", "bitrate", "sizeBytes", "sampleRate",
+    "duration", "bitrate", "sizeBytes", "sampleRate", "fileType",
     
     // Play statistics
     "playCount", "lastPlayed",
     
     // Dates
-    "dateAdded", "dateModified", "releaseDate",
+    "dateAdded", "dateModified",
     
     // File information
-    "location", "filename", "extension",
+    "location", "locationUnique",
     
     // Track numbers
-    "trackNumber", "discNumber",
+    "trackNumber",
     
-    // Energy/Mood (DJ software specific)
-    "energy",
+    // Energy/Mood analysis
+    "energy", "danceability", "popularity", "happiness",
     
     // Custom fields
-    "extra1", "extra2", "extra3"
+    "extra1", "extra2",
+    
+    // Advanced features (read-only)
+    "tags", "importSource", "tempomarkers", "cuepoints",
+    "incoming", "archived", "archivedSince",
+    "beatshiftCase", "fingerprint",
+    "streamingService", "streamingId"
 ].sort();
 _helpers.Report("Fields defined. Found " + allKeys.length + " fields.");
 
