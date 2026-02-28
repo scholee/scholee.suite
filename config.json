@@ -79,6 +79,60 @@
         },
         "allowParallel": false
       }
+    },
+    {
+      "id": "energy.to.tag",
+      "name": "Energy to Tag",
+      "description": "Adds the Energy value (0-10) as a Custom Tag in the Energy category to selected tracks.",
+      "config": {
+        "permissions": {
+          "track": {
+            "read": [
+              "selected"
+            ],
+            "modify": [
+              "selected"
+            ],
+            "modifyFields": [
+              "tags"
+            ]
+          },
+          "customTag": {
+            "read": [
+              "all"
+            ]
+          }
+        },
+        "allowParallel": false
+      }
+    },
+    {
+      "id": "import.lyricist.tags",
+      "name": "Import Lyricist Tags",
+      "description": "Imports comma-separated values from LYRICIST field as Custom Tags. Uses existing tags from 'Genre & Style' or creates new ones in 'Imported Tags'.",
+      "config": {
+        "permissions": {
+          "track": {
+            "read": [
+              "selected"
+            ],
+            "modify": [
+              "selected"
+            ],
+            "modifyFields": [
+              "lyricist",
+              "tags"
+            ]
+          },
+          "customTag": {
+            "read": [
+              "all"
+            ],
+            "create": true
+          }
+        },
+        "allowParallel": false
+      }
     }
   ]
 }

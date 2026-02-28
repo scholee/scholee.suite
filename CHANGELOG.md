@@ -1,10 +1,52 @@
-# Changelog - Compare Fields Plugin
+# Changelog - Scholee Suite
 
-All important changes to this plugin are documented in this file.
+All important changes to this plugin suite are documented in this file.
 
 ---
 
-## [3.0.8] - 2025-10-13 ✅ STABLE - SCOPE FIXES
+## [4.0.0] - 2026-02-28 ✅ STABLE - SUITE EXPANSION
+
+### 🎉 Major Update: Plugin Collection
+**Scholee Suite** erweitert um drei neue Actions!
+
+### ✨ New Actions
+
+#### 1. Energy to Tag
+- Konvertiert Energy-Wert (0-10) automatisch zu Custom Tag
+- Verwendet existierende Tags aus "Energy" Kategorie
+- Arbeitet mit selektierten Tracks
+- Vermeidet Duplikate
+
+#### 2. Import Lyricist Tags
+- Importiert komma-getrennte Werte aus LYRICIST-Feld als Custom Tags
+- Intelligente Tag-Zuweisung:
+  - Verwendet existierende Tags aus "Genre & Style" falls vorhanden
+  - Erstellt neue Tags in "Imported Tags" für unbekannte Werte
+- Leert LYRICIST-Feld nach Import
+- Case-insensitive Matching
+- Perfekt für Onetagger-Workflow
+
+#### 3. Create Playlist
+- Schnelle Playlist-Erstellung mit Zeitstempel
+- Erstellt Playlists im "Plugins Scholee" Folder
+- Fügt ausgewählte Tracks hinzu (optional)
+
+### 🐛 Bugfixes
+- 🐛 Fixed: Removed all `continue` statements (Lexicon compatibility)
+- 🐛 Fixed: Import Lyricist Tags leert LYRICIST-Feld auch wenn Tags bereits vorhanden
+
+### 📚 Documentation
+- 📖 Updated: README.md für Suite-Struktur
+- 📖 Added: Cursor-Regel für Lexicon API Standards
+- 📖 Updated: Installation guide
+
+### 🔧 Infrastructure
+- 📁 Added: `.gitignore` entries für `.cursor/` und `reference-examples/`
+- 📁 Updated: `config.json` mit allen Actions
+
+---
+
+## [3.0.8] - 2025-10-13 ✅ STABLE - SCOPE FIXES (Compare Fields)
 
 ### 🐛 Critical Bug Fixes: All Scopes Now Working
 

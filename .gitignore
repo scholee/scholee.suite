@@ -36,6 +36,12 @@ coverage/
 *.swo
 *~
 
+# Cursor
+.cursor/
+
+# Reference examples (vendor)
+reference-examples/
+
 # Temporary files
 *.tmp
 *.bak

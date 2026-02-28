@@ -1,27 +1,63 @@
-# Compare Fields - Lexicon DJ Plugin
+# Scholee Suite - Lexicon DJ Plugin Collection
 
-[![Version](https://img.shields.io/badge/version-3.0.8-blue.svg)](https://github.com/scholee/scholee.suite/releases)
+[![Version](https://img.shields.io/badge/version-4.0.0-blue.svg)](https://github.com/scholee/scholee.suite/releases)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![Lexicon DJ](https://img.shields.io/badge/Lexicon%20DJ-Plugin-orange.svg)](https://www.lexicondj.com)
 
-A powerful plugin to compare track fields and automatically create playlists with the results.
+A powerful plugin suite for Lexicon DJ with utilities for field comparison, tag management, and metadata import.
 
-**Version:** 3.0.8  
+**Version:** 4.0.0  
 **Author:** Joël Kuhn  
 **Status:** ✅ Stable & Production-Ready
 
 ---
 
-## 📋 Features
+## 📦 Included Actions
 
-### Core Features
-- ✅ **Field Comparison**: Compare any two track fields (e.g., Artist vs. Extra1)
-- ✅ **Flexible Modes**: "Matching" (same values) or "Not matching" (different values)
-- ✅ **Three Scopes**: All tracks, Current view, Selected tracks
-- ✅ **Smart Empty Handling**: Three policies for empty fields
-- ✅ **Whitespace Trimming**: Optionally remove leading/trailing whitespace
-- ✅ **Auto-Playlist**: Creates timestamped playlist in "Plugins Scholee" folder
-- ✅ **Progress Tracking**: Real-time updates for large libraries
+### 1. Compare Fields
+Compare any two track fields and automatically create playlists with the results.
+
+**Features:**
+- ✅ Compare any two track fields (e.g., Artist vs. Extra1)
+- ✅ Flexible Modes: "Matching" or "Not matching"
+- ✅ Three Scopes: All tracks, Current view, Selected tracks
+- ✅ Smart Empty Handling: Three policies for empty fields
+- ✅ Whitespace Trimming
+- ✅ Auto-Playlist creation with timestamp
+- ✅ Progress Tracking for large libraries
+
+### 2. Create Playlist
+Quickly create timestamped playlists with selected tracks.
+
+**Features:**
+- ✅ Creates playlist in "Plugins Scholee" folder
+- ✅ Automatic timestamp naming
+- ✅ Adds selected tracks or creates empty playlist
+
+### 3. Energy to Tag
+Automatically adds the Energy value (0-10) as a Custom Tag.
+
+**Features:**
+- ✅ Reads Energy field value
+- ✅ Adds corresponding tag from "Energy" category
+- ✅ Works with selected tracks
+- ✅ Skips tracks without Energy value
+- ✅ Avoids duplicate tags
+
+### 4. Import Lyricist Tags
+Imports comma-separated values from LYRICIST field as Custom Tags (perfect for Onetagger workflow).
+
+**Features:**
+- ✅ Parses comma-separated values from LYRICIST field
+- ✅ Uses existing tags from "Genre & Style" if available
+- ✅ Creates new tags in "Imported Tags" for unknown values
+- ✅ Clears LYRICIST field after import
+- ✅ Case-insensitive matching
+- ✅ Automatic whitespace trimming
+
+---
+
+## 📋 Compare Fields - Detailed Features
 
 ### Comparable Fields
 
@@ -66,12 +102,40 @@ A powerful plugin to compare track fields and automatically create playlists wit
 
 ---
 
-## 🚀 Usage
+## 🚀 Quick Start
 
-### 1. Start Plugin
-**Plugins → Compare Fields → Run**
+### Prerequisites
+- Lexicon DJ must be running
+- Enable API in Lexicon settings under _Integrations_ (for advanced features)
 
-### 2. Complete Dialogs
+### Usage by Action
+
+#### Compare Fields
+1. **Plugins → Compare Fields → Run**
+2. Complete dialogs (Field A, Field B, Mode, Scope, etc.)
+3. Confirm to create playlist
+4. Result: **Plugins Scholee / Compare YYYY-MM-DD HH:mm:ss**
+
+#### Create Playlist
+1. Select tracks (optional)
+2. **Plugins → Create Playlist → Run**
+3. Result: **Plugins Scholee / Select YYYY-MM-DD HH:mm:ss**
+
+#### Energy to Tag
+1. Select tracks with Energy values
+2. **Plugins → Energy to Tag → Run**
+3. Energy value (0-10) added as tag in "Energy" category
+
+#### Import Lyricist Tags
+1. Select tracks with comma-separated values in LYRICIST field
+2. **Plugins → Import Lyricist Tags → Run**
+3. Tags are imported and LYRICIST field is cleared
+
+---
+
+## 📖 Detailed Documentation
+
+### Compare Fields - Configuration
 
 | Dialog | Description | Example |
 |--------|-------------|---------|
@@ -81,14 +145,6 @@ A powerful plugin to compare track fields and automatically create playlists wit
 | **Scope** | Data source | `All tracks` |
 | **Trim whitespace** | Ignore whitespace? | `true` |
 | **Empty handling** | Behavior for empty fields | `exclude` |
-
-### 3. Confirmation
-- Preview shows number of tracks found
-- "Yes" → Playlist is created
-- "No" → Cancel without changes
-
-### 4. Result
-Playlist is created at: **Plugins Scholee / Compare YYYY-MM-DD HH:mm:ss**
 
 ---
 
@@ -104,7 +160,9 @@ Playlist is created at: **Plugins Scholee / Compare YYYY-MM-DD HH:mm:ss**
 
 ## 💡 Usage Examples
 
-### Example 1: Validate Tags
+### Compare Fields Examples
+
+#### Example 1: Validate Tags
 **Goal:** Find tracks where Artist and Extra1 are different
 ```
 Field A: artist
@@ -114,7 +172,7 @@ Scope: All tracks
 Result: Tracks with different values in both fields
 ```
 
-### Example 2: Find Duplicates
+#### Example 2: Find Duplicates
 **Goal:** Find tracks with same title but different artist
 ```
 Field A: title
@@ -122,7 +180,7 @@ Field B: artist
 Mode: Matching (for title check in two passes)
 ```
 
-### Example 3: Metadata Cleanup
+#### Example 3: Metadata Cleanup
 **Goal:** Find tracks where Comment and Grouping are identical
 ```
 Field A: comment
@@ -130,6 +188,37 @@ Field B: grouping
 Mode: Matching
 Scope: Selected tracks
 Result: Potential cleanup candidates
+```
+
+### Import Lyricist Tags Example
+
+**Onetagger Workflow:**
+1. Tag tracks with Onetagger, write genres to LYRICIST field
+2. Import to Lexicon
+3. Select tracks with LYRICIST data
+4. Run **Import Lyricist Tags**
+5. Result: Tags imported, LYRICIST field cleared
+
+**Example:**
+```
+Before: LYRICIST = "House,Tech House,Minimal Techno"
+After:  LYRICIST = "" (cleared)
+        Tags: House, Tech House, Minimal Techno (added to track)
+```
+
+### Energy to Tag Example
+
+**Workflow:**
+1. Analyze tracks with Lexicon (Energy 0-10)
+2. Select tracks to tag
+3. Run **Energy to Tag**
+4. Result: Energy value added as tag
+
+**Example:**
+```
+Track: Air - Kelly Watch The Stars
+Energy: 5
+Result: Tag "5" added from "Energy" category
 ```
 
 ---
@@ -158,23 +247,43 @@ Result: Potential cleanup candidates
 
 ### Plugin doesn't start
 - **Restart Lexicon**
-- **Check logs**: `Logs/scholee.suite/Compare Fields.log`
+- **Check logs**: `Logs/scholee.suite/<Action Name>.log`
+- **Verify config.json** syntax
 
-### No tracks found
+### Compare Fields: No tracks found
 - **Check scope**: Are there tracks in "Selected" or "Current view"?
 - **Empty handling**: "exclude" skips empty fields
 
-### Playlist not created
+### Compare Fields: Playlist not created
 - **Check permissions**: Plugin requires `playlist.create` permission
 - **_vars.playlistsAll**: Lexicon must have updated playlist list
+
+### Energy to Tag: Error "Category not found"
+- **Create Category**: Custom Tag Category "Energy" must exist
+- **Create Tags**: Tags "0" through "10" must exist in category
+
+### Import Lyricist Tags: Error "Category not found"
+- **Create Categories**: Both "Genre & Style" and "Imported Tags" must exist
+- **Check spelling**: Category names are case-sensitive
+
+### Import Lyricist Tags: LYRICIST field not cleared
+- Fixed in version 4.0.0
+- Field is now cleared even if tags already exist on track
 
 ---
 
 ## 📝 Changelog
 
-See [CHANGELOG.md](CHANGELOG.md) for details on all versions.
+### Version 4.0.0 (2026-02-28) - Current
+✅ **Major Update: Suite Expansion**
+- ✨ New: **Energy to Tag** - Automatically convert Energy values to Custom Tags
+- ✨ New: **Import Lyricist Tags** - Import comma-separated tags from LYRICIST field (Onetagger workflow)
+- ✨ New: **Create Playlist** - Quick playlist creation with selected tracks
+- 📚 Enhanced: Project renamed to "Scholee Suite" (plugin collection)
+- 🐛 Fixed: Lexicon compatibility (removed continue statements)
+- 📖 Updated: Comprehensive documentation for all actions
 
-### Version 3.0.8 (2025-10-13) - Current
+### Version 3.0.8 (2025-10-13)
 ✅ **Fixed scope loading issues**
 - 🐛 Fixed: "All tracks" now works correctly
 - 🐛 Fixed: "Current view" now works correctly
@@ -182,7 +291,6 @@ See [CHANGELOG.md](CHANGELOG.md) for details on all versions.
 - ✅ Changed: `_vars.tracksVisible` → `_vars.tracksView` (correct variable)
 - ✅ Added: "view" permission for "Current view" scope
 - ✅ Added: Better logging/reporting for debugging
-- **Status: All three scopes now working** 🎉
 
 ---
 
@@ -206,7 +314,23 @@ For questions or issues:
    - **macOS:** `~/Documents/Lexicon/Plugins/`
    - **Windows:** `%USERPROFILE%\Documents\Lexicon\Plugins\`
 3. Restart Lexicon or reload plugins
-4. Find plugin under **Plugins → Compare Fields**
+4. Find actions under **Plugins → Scholee Suite**
+
+### Available Actions
+- Compare Fields
+- Create Playlist
+- Energy to Tag
+- Import Lyricist Tags
+
+### Requirements for Tag Actions
+
+**For Energy to Tag:**
+- Custom Tag Category "Energy" must exist
+- Tags "0" through "10" must exist in this category
+
+**For Import Lyricist Tags:**
+- Custom Tag Category "Genre & Style" must exist (for matching existing tags)
+- Custom Tag Category "Imported Tags" must exist (for new tags)
 
 ---
 
