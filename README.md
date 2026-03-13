@@ -1,12 +1,12 @@
 # Scholee Suite - Lexicon DJ Plugin Collection
 
-[![Version](https://img.shields.io/badge/version-4.1.0-blue.svg)](https://github.com/scholee/scholee.suite/releases)
+[![Version](https://img.shields.io/badge/version-4.0.0-blue.svg)](https://github.com/scholee/scholee.suite/releases)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![Lexicon DJ](https://img.shields.io/badge/Lexicon%20DJ-Plugin-orange.svg)](https://www.lexicondj.com)
 
 A powerful plugin suite for Lexicon DJ with utilities for field comparison, tag management, and metadata import.
 
-**Version:** 4.1.0  
+**Version:** 4.0.0  
 **Author:** Joël Kuhn  
 **Status:** ✅ Stable & Production-Ready
 
@@ -54,16 +54,6 @@ Imports comma-separated values from LYRICIST field as Custom Tags (perfect for O
 - ✅ Clears LYRICIST field after import
 - ✅ Case-insensitive matching
 - ✅ Automatic whitespace trimming
-
-### 5. Export CloudPlay Playlists
-Exports playlists from a Lexicon folder (default: `CloudPlay`) as M3U8 files with relative paths for Astiga.
-
-**Features:**
-- ✅ Exports all playlists and smartlists below a source folder
-- ✅ Writes `#EXTINF:NaN,Artist - Title` entries
-- ✅ Relative paths via configurable base (`../Music` by default)
-- ✅ Configurable source folder, music library path, and target directory
-- ✅ M3U8 filename sanitization for safe export
 
 ---
 
@@ -140,15 +130,6 @@ Exports playlists from a Lexicon folder (default: `CloudPlay`) as M3U8 files wit
 1. Select tracks with comma-separated values in LYRICIST field
 2. **Plugins → Import Lyricist Tags → Run**
 3. Tags are imported and LYRICIST field is cleared
-
-#### Export CloudPlay Playlists
-1. **Plugins → Export CloudPlay Playlists → Run**
-2. Confirm/adapt dialogs:
-   - CloudPlay Folder Name (`CloudPlay`)
-   - Music Library Path (`~/Library/CloudStorage/Dropbox/Music/Music`)
-   - Export Target Directory (`~/Library/CloudStorage/Dropbox/Music/CloudPlaylists`)
-   - Relative Path (Playlist -> Music) (`../Music`)
-3. Result: one `.m3u8` file per playlist in target directory
 
 ---
 
@@ -289,22 +270,9 @@ Result: Tag "5" added from "Energy" category
 - Fixed in version 4.0.0
 - Field is now cleared even if tags already exist on track
 
-### Export CloudPlay Playlists: Playlist skipped
-- **No track IDs available**: Some playlists/smartlists may not expose track lists in `_vars.playlistsAll`
-- **Path issue**: Track location is outside configured Music Library path
-- **Fix**: Verify `Music Library Path` and relative path setting (`../Music`)
-
----
-
 ## 📝 Changelog
 
-### Version 4.1.0 (2026-03-13) - Current
-✅ **New Action: CloudPlay Export**
-- ✨ New: **Export CloudPlay Playlists** - Export folder playlists as M3U8 for Astiga
-- ✅ Added: Config dialogs for source folder, music path, target directory and relative path
-- ✅ Added: Relative-path M3U8 output with `#EXTINF:NaN,Artist - Title`
-
-### Version 4.0.0 (2026-02-28)
+### Version 4.0.0 (2026-02-28) - Current
 ✅ **Major Update: Suite Expansion**
 - ✨ New: **Energy to Tag** - Automatically convert Energy values to Custom Tags
 - ✨ New: **Import Lyricist Tags** - Import comma-separated tags from LYRICIST field (Onetagger workflow)
@@ -351,7 +319,6 @@ For questions or issues:
 - Create Playlist
 - Energy to Tag
 - Import Lyricist Tags
-- Export CloudPlay Playlists
 
 ### Requirements for Tag Actions
 

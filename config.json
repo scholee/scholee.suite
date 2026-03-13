@@ -133,35 +133,6 @@
         },
         "allowParallel": false
       }
-    },
-    {
-      "id": "export.cloudplay.playlists",
-      "name": "Export CloudPlay Playlists",
-      "description": "Exports playlists from folder 'CloudPlay' as M3U8 files with relative paths for Astiga.",
-      "config": {
-        "permissions": {
-          "track": {
-            "read": [
-              "all"
-            ]
-          },
-          "playlist": {
-            "read": [
-              "all"
-            ]
-          },
-          "files": {
-            "write": true
-          }
-        },
-        "settings": {
-          "cloudplayFolder": "CloudPlay",
-          "musicLibrary": "~/Library/CloudStorage/Dropbox/Music/Music",
-          "targetDir": "~/Library/CloudStorage/Dropbox/Music/CloudPlaylists",
-          "relPathFromPlaylistToMusic": "../Music"
-        },
-        "allowParallel": false
-      }
     }
   ]
 }

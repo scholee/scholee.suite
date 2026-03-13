@@ -8,7 +8,13 @@
  * @version 3.0.8
  */
 
+const ACTION_NAME = "Compare Fields";
+const LOG_SESSION = String(Date.now());
+const logInfo = (msg) => _helpers.Log("[" + ACTION_NAME + "][INFO][" + LOG_SESSION + "] " + msg);
+const logError = (msg) => _helpers.Log("[" + ACTION_NAME + "][ERROR][" + LOG_SESSION + "] " + msg);
+
 _helpers.Report("Plugin execution started (v3.0.8).");
+logInfo("Start.");
 
 // --- HELPER FUNCTIONS ---
 
@@ -106,6 +112,7 @@ if (!emptyPolicy) { _helpers.Report("Cancelled by user."); return; }
 _helpers.Report("User dialogs completed.");
 const normOptions = { trim: (trimWhitespace === "true") };
 const wantMatch = (mode === "Matching");
+logInfo("Input: fieldA=" + fieldA + ", fieldB=" + fieldB + ", mode=" + mode + ", scope=" + scope + ", trim=" + trimWhitespace + ", emptyPolicy=" + emptyPolicy);
 
 // 3. Get tracks to process
 _helpers.Report("Step 3: Getting tracks for scope: " + scope);
@@ -133,6 +140,7 @@ if (scope === "Selected tracks") {
 
 if (tracksToProcess.length === 0) {
     _helpers.Report("No tracks found for the selected scope. Aborting.");
+    logInfo("Abort: no tracks in selected scope.");
     return;
 }
 _helpers.Report("Found " + tracksToProcess.length + " tracks to process.");
@@ -175,6 +183,7 @@ _helpers.Report("Comparison finished. Compared: " + compared + ", Found: " + res
 // 5. Preview and confirm
 if (resultIds.length === 0) {
     _helpers.Report("No matching tracks found.");
+    logInfo("Done: no matching tracks.");
     return;
 }
 
@@ -189,6 +198,7 @@ const confirmRun = await _ui.showInputDialog({
 
 if (confirmRun !== "Yes") {
     _helpers.Report("Playlist creation cancelled by user.");
+    logInfo("Cancelled by user before playlist create.");
     return;
 }
 
@@ -220,9 +230,12 @@ const finalPlaylist = _vars.playlistsAll.find(p => p && p.id === playlistResult.
 if (finalPlaylist) {
     finalPlaylist.trackIds = resultIds;
     _helpers.Report("SUCCESS: Created playlist '" + playlistName + "' with " + resultIds.length + " tracks.");
+    logInfo("Playlist created and populated. playlistId=" + finalPlaylist.id + ", trackCount=" + resultIds.length);
 } else {
     _helpers.Report("ERROR: Could not find newly created playlist in _vars.playlistsAll to assign tracks.");
+    logError("Playlist create succeeded but lookup in _vars.playlistsAll failed. createdId=" + playlistResult.id);
 }
 
 _ui.progress(1);
 _helpers.Report("Plugin execution finished.");
+logInfo("Finished.");
